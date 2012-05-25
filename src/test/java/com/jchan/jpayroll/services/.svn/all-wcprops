@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/jpayroll/!svn/ver/3/trunk/src/test/java/com/jchan/jpayroll/services
+END
+PayPeriodSvTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/jpayroll/!svn/ver/6/trunk/src/test/java/com/jchan/jpayroll/services/PayPeriodSvTest.java
+END
+PayScheduleCreateTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/jpayroll/!svn/ver/8/trunk/src/test/java/com/jchan/jpayroll/services/PayScheduleCreateTest.java
+END
+UserLoginSvTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/jpayroll/!svn/ver/9/trunk/src/test/java/com/jchan/jpayroll/services/UserLoginSvTest.java
+END

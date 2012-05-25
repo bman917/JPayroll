@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/jpayroll/!svn/ver/3/trunk/src/main/java/com/jchan/jpayroll/services
+END
+PayPeriodSv.java
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/jpayroll/!svn/ver/6/trunk/src/main/java/com/jchan/jpayroll/services/PayPeriodSv.java
+END
+HistorySv.java
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/jpayroll/!svn/ver/9/trunk/src/main/java/com/jchan/jpayroll/services/HistorySv.java
+END
+UserLoginSv.java
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/jpayroll/!svn/ver/9/trunk/src/main/java/com/jchan/jpayroll/services/UserLoginSv.java
+END

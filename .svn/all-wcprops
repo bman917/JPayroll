@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 30
+/svn/jpayroll/!svn/ver/3/trunk
+END
+pom.xml
+K 25
+svn:wc:ra_dav:version-url
+V 38
+/svn/jpayroll/!svn/ver/9/trunk/pom.xml
+END
+.project
+K 25
+svn:wc:ra_dav:version-url
+V 39
+/svn/jpayroll/!svn/ver/3/trunk/.project
+END
+.classpath
+K 25
+svn:wc:ra_dav:version-url
+V 41
+/svn/jpayroll/!svn/ver/3/trunk/.classpath
+END

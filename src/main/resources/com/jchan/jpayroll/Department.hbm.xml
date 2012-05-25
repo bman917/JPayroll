@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.jchan.jpayroll.model">
+	<class name="Department" table="DEPARTMENTS">
+		<id name="id" column="DEPARTMENT_ID">
+			<generator class="native" />
+		</id>
+		<property name="name" />
+		<property name="description" />
+	</class>
+
+	<class name="AdminUser" table="USER">
+		<id name="name" column="name">
+		</id>
+
+		<property name="password" />
+	</class>
+
+	<class name="HistoryEntry" table="HISTORY">
+		<id name="id" column="HISTORY_ID">
+			<generator class="native" />
+		</id>
+		<property name="userName" />
+		<property name="description" />
+	</class>
+</hibernate-mapping>
+

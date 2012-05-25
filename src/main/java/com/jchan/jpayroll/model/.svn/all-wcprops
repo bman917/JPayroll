@@ -1,0 +1,47 @@
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/jpayroll/!svn/ver/3/trunk/src/main/java/com/jchan/jpayroll/model
+END
+PaySchedule.java
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/jpayroll/!svn/ver/6/trunk/src/main/java/com/jchan/jpayroll/model/PaySchedule.java
+END
+SpecificDatePaySchedule.java
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/jpayroll/!svn/ver/3/trunk/src/main/java/com/jchan/jpayroll/model/SpecificDatePaySchedule.java
+END
+HistoryEntry.java
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/jpayroll/!svn/ver/9/trunk/src/main/java/com/jchan/jpayroll/model/HistoryEntry.java
+END
+WeeklyPaySchedule.java
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/jpayroll/!svn/ver/7/trunk/src/main/java/com/jchan/jpayroll/model/WeeklyPaySchedule.java
+END
+PayScheduleFactory.java
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/jpayroll/!svn/ver/7/trunk/src/main/java/com/jchan/jpayroll/model/PayScheduleFactory.java
+END
+AdminUser.java
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/jpayroll/!svn/ver/10/trunk/src/main/java/com/jchan/jpayroll/model/AdminUser.java
+END
+Department.java
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/jpayroll/!svn/ver/10/trunk/src/main/java/com/jchan/jpayroll/model/Department.java
+END
