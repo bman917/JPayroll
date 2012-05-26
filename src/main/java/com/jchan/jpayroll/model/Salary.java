@@ -8,9 +8,12 @@ import com.jchan.jpayroll.common.ScheduleType;
 import java.math.BigDecimal;
 import java.util.Calendar;
 import java.util.Date;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 /**
- * A salary object represents the Salary of an Employee.
+ * A salary object represents the Salaryo f an Employee.
  * 
  * The salary with the most recent 'effectiveDate' will be the employee's
  * current salary. Other salaries related to the employee will be the
@@ -20,11 +23,23 @@ import java.util.Date;
  */
 public class Salary {
     
+    @Id
+    @GeneratedValue(strategy = GenerationType.TABLE)
+    private Long id;
+    
     BigDecimal amount;
     ScheduleType type;
     Date effectiveDate;
     
+    public Salary(String amount, ScheduleType type) {
+        init(new BigDecimal(amount), type);
+    }
+    
     public Salary(BigDecimal amount, ScheduleType type) {
+        init(amount, type);
+    }
+    
+    private void init(BigDecimal amount, ScheduleType type) {
         this.amount = amount;
         this.type = type;
         effectiveDate = Calendar.getInstance().getTime();

@@ -9,5 +9,6 @@ public enum ScheduleType
 	SPECIFIC_DATE,
 	DAY_OF_WEEK,
 	SEMI_MONTHLY,
+        MONTHLY,
 	DAILY
 }
