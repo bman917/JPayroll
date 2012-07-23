@@ -61,4 +61,5 @@ public class SalarySvTest {
         Salary sal1 = new Salary(amount, schedule);
         return SalarySv.calculateAnnual(sal1);
     }
+    
 }

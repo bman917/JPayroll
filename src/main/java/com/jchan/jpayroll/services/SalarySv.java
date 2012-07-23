@@ -4,8 +4,13 @@
  */
 package com.jchan.jpayroll.services;
 
+import com.jchan.jpayroll.comparators.SalaryBasicComparator;
 import com.jchan.jpayroll.model.Salary;
 import java.math.BigDecimal;
+import java.util.Collections;
+import java.util.List;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  *
@@ -13,6 +18,7 @@ import java.math.BigDecimal;
  */
 public class SalarySv {
     
+     final static Logger logger = LoggerFactory.getLogger(SalarySv.class);
     /**
      * Calculates the annual salary amount.
      * 
@@ -32,6 +38,18 @@ public class SalarySv {
             default:
                 throw new RuntimeException("Unsupported Salary Schedule: " + salary.getType());
         }
+    }
+    
+    /**
+     * Sorts a list of Salaries by effective date.
+     * TAKE NOTE: This method modifies the order of Salaries in the list parameter.
+     * @return 
+     */
+    public static List<Salary> sortByEffectiveDate(List<Salary> list)
+    {
+        logger.info("Sorting Salaries by EffectiveDate");
+         Collections.sort(list, new SalaryBasicComparator());
+         return list;
     }
     
 }
