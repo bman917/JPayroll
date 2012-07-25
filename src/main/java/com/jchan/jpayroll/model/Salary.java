@@ -30,9 +30,9 @@ public class Salary {
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE)
     private Long id;
-    BigDecimal amount;
-    ScheduleType type;
-    Date effectiveDate;
+    private BigDecimal amount;
+    private ScheduleType type;
+    private Date effectiveDate;
     
     public Salary(int amount, ScheduleType type) {
         init(new BigDecimal(amount), type, null);
@@ -50,15 +50,15 @@ public class Salary {
      *
      * @param amount
      * @param type
-     * @param date dd/MM/yyyy
+     * @param effectiveDate dd/MM/yyyy
      */
-    public Salary(String amount, ScheduleType type, String date) {
+    public Salary(String amount, ScheduleType type, String effectiveDate) {
 
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         Date d;
 
         try {
-            d = sdf.parse(date);
+            d = sdf.parse(effectiveDate);
         } catch (ParseException ex) {
             throw new RuntimeException(ex);
         }
@@ -66,13 +66,13 @@ public class Salary {
         init(new BigDecimal(amount), type, d);
     }
 
-    private void init(BigDecimal amount, ScheduleType type, Date date) {
+    private void init(BigDecimal amount, ScheduleType type, Date effectDate) {
         this.amount = amount;
         this.type = type;
-        if (date == null) {
-            effectiveDate = Calendar.getInstance().getTime();
+        if (effectDate == null) {
+            this.effectiveDate = Calendar.getInstance().getTime();
         } else {
-            effectiveDate = date;
+            this.effectiveDate = effectDate;
         }
     }
 
