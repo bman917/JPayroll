@@ -19,6 +19,10 @@ import org.slf4j.LoggerFactory;
 public class SalarySv {
     
      final static Logger logger = LoggerFactory.getLogger(SalarySv.class);
+     
+     final static BigDecimal MONTHS_IN_YEAR = new BigDecimal("12");
+     final static BigDecimal SEMI_MONTHS_IN_YEAR = new BigDecimal("24");
+     
     /**
      * Calculates the annual salary amount.
      * 
@@ -32,9 +36,9 @@ public class SalarySv {
         switch (salary.getType())
         {
             case MONTHLY:
-                return amount.multiply(new BigDecimal("12"));
+                return amount.multiply(MONTHS_IN_YEAR);
             case SEMI_MONTHLY:
-                return amount.multiply(new BigDecimal("24"));
+                return amount.multiply(SEMI_MONTHS_IN_YEAR);
             default:
                 throw new RuntimeException("Unsupported Salary Schedule: " + salary.getType());
         }
