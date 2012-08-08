@@ -45,13 +45,30 @@ public class TaxSvTest {
     @Test
     public void testCalculateAnnualTax() {
 
+        /*
+         * This should be removed at some point. A UI should be created for
+         * manual testing..
+         */
+        
         Salary salary = new Salary("30000", ScheduleType.MONTHLY);
         BigDecimal annualSalary = SalarySv.calculateAnnual(salary);
-
+        
         logger.info("Monthly Salary: " + salary.getAmount()
-                + ", Annual Tax: " + TaxSv.calculateAnnualTax(annualSalary)
-                + ", Manthly Tax: " + TaxSv.calculateMonthlyTax(annualSalary));
+                + ", Annual Tax: " + TaxSv.calcAnnualTax(annualSalary)
+                + ", Manthly Tax: " + TaxSv.calcMonthlyTax(annualSalary));
+        
+        final String msg = "Incorrect computation of Annual Tax";
+        /*
+         * Now do some REAL testing....
+         */
+        assertEquals(msg, "250.00", TaxSv.calcAnnualTax(new BigDecimal("5000")).toString());
+        assertEquals(msg, "500.00", TaxSv.calcAnnualTax(new BigDecimal("10000")).toString());
+        assertEquals(msg, "500.10", TaxSv.calcAnnualTax(new BigDecimal("10001")).toString());
+        assertEquals(msg, "3250.00", TaxSv.calcAnnualTax(new BigDecimal("35000")).toString());
+
     }
+    
+
     
     /**
      * Attempt to calculate the annual tax where in two or more
@@ -68,14 +85,14 @@ public class TaxSvTest {
         
         /*
          * First we will test this method with only 1 Salary. 
-         * Using this calculateAnnualTax(List<Salary>, year) and 
-         * calculateAnnualTax(annualIncome) should give the same result.
+         * Using this calcAnnualTax(List<Salary>, year) and 
+         * calcAnnualTax(annualIncome) should give the same result.
          */
         
         int monthly1 = 10000;
         int annualIncome1 = monthly1 * 12;
         
-        BigDecimal annualTax1 = TaxSv.calculateAnnualTax(new BigDecimal(annualIncome1));
+        BigDecimal annualTax1 = TaxSv.calcAnnualTax(new BigDecimal(annualIncome1));
         
         /*
          * Create the first Salary. NOTE: the date is in the PAST (January last year)
@@ -86,7 +103,7 @@ public class TaxSvTest {
         List<Salary> salaryList = new ArrayList<Salary>();
         salaryList.add(s1);
 
-        BigDecimal result1 = TaxSv.calculateAnnualTax(salaryList, currentYear);
+        BigDecimal result1 = TaxSv.calcAnnualTax(salaryList, currentYear);
         
         assertEquals("Incorrect computation of Annual Tax", annualTax1, result1);
         
@@ -97,7 +114,7 @@ public class TaxSvTest {
         Salary s2 = new Salary(String.valueOf(monthly1 * 2), ScheduleType.MONTHLY, "01/05/" + currentYear);
         salaryList.add(s2);
         
-        BigDecimal result2 = TaxSv.calculateAnnualTax(salaryList, currentYear);
+        BigDecimal result2 = TaxSv.calcAnnualTax(salaryList, currentYear);
         
         logger.info("Annual Tax: " + result2);
         
@@ -123,7 +140,7 @@ public class TaxSvTest {
         Salary s = new Salary("10000", ScheduleType.MONTHLY, "01/05/" + currentYear);
         salaryList.add(s);
         
-        BigDecimal result = TaxSv.calculateAnnualTax(salaryList, currentYear);
+        BigDecimal result = TaxSv.calcAnnualTax(salaryList, currentYear);
         
         logger.info("Annual Tax: " + result);
         

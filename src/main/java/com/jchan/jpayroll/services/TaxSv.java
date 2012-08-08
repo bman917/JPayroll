@@ -36,7 +36,7 @@ public class TaxSv {
      * P250,000 Over P500,000 …………………………………… P125,000+32% of the excess over
      * P500,000
      */
-    public static BigDecimal calculateAnnualTax(BigDecimal annualIncome) {
+    public static BigDecimal calcAnnualTax(BigDecimal annualIncome) {
 
         BigDecimal bracket_1 = new BigDecimal(10000);
         BigDecimal bracket_2 = new BigDecimal(30000);
@@ -81,9 +81,9 @@ public class TaxSv {
      * @param annualIncome
      * @return
      */
-    public static BigDecimal calculateMonthlyTax(BigDecimal annualIncome) {
+    public static BigDecimal calcMonthlyTax(BigDecimal annualIncome) {
 
-        BigDecimal annualTax = calculateAnnualTax(annualIncome);
+        BigDecimal annualTax = calcAnnualTax(annualIncome);
         return annualTax.divide(new BigDecimal(12), context);
     }
 
@@ -98,7 +98,7 @@ public class TaxSv {
      * @param year
      * @return
      */
-    public static BigDecimal calculateAnnualTax(List<Salary> list, int year) {
+    public static BigDecimal calcAnnualTax(List<Salary> list, int year) {
 
         SalarySv.sortByEffectiveDate(list);
 
@@ -148,6 +148,6 @@ public class TaxSv {
         logger.info("Total Annual Income: " + total);
 
 
-        return calculateAnnualTax(total);
+        return calcAnnualTax(total);
     }
 }
