@@ -58,8 +58,8 @@ function calcAnnualTax2(status, numOfDependents, regMonthlyIncome, thisMonthsInc
         
     var personalExemption = calcPersonalTaxExemption(status, numOfDependents);
         
-    var remainingMonths = 13 - monthNumber;
-    var projectedIncome = thisMonthsIncome + (regMonthlyIncome * (remainingMonths - 1)) + ytdIncome;
+    var remainingMonths = 12 - monthNumber;
+    var projectedIncome = thisMonthsIncome + (regMonthlyIncome * (remainingMonths)) + ytdIncome;
     
     var taxableIncome = projectedIncome - personalExemption;
     
@@ -136,5 +136,40 @@ function taxBracket(income, bracket, percentage, addOn) {
 
 
 
-
-
+function calcSSSContribution(monthlyIncome) {
+    
+    var inc = monthlyIncome;
+    var o = new Object();
+    
+    if (inc.between(1000, 1249.99))      { o.er =  70.70; o.ee = 33.30; }
+    else if (inc.between(1250, 1749.99)) {o.er = 106.00; o.ee = 50.00; }
+    else if (inc.between(1750, 2249.99)) {o.er = 141.30; o.ee = 66.70; }
+    else if (inc.between(2250, 2749.99)) {o.er = 176.70; o.ee = 83.30; }
+    else if (inc.between(2750, 3249.99)) {o.er = 212.00; o.ee = 100.00; }
+    else if (inc.between(3250, 3749.99)) {o.er = 247.30; o.ee = 116.70; }
+    else if (inc.between(3750, 4249.99)) {o.er = 282.70; o.ee = 133.30; }
+    else if (inc.between(4250, 4749.99)) {o.er = 318.00; o.ee = 150.00; }
+    else if (inc.between(4750, 5249.99)) {o.er = 353.30; o.ee = 166.70; }
+    else if (inc.between(5250, 5749.99)) {o.er = 388.70; o.ee = 183.30; }
+    else if (inc.between(5750, 6249.99)) {o.er = 424.00; o.ee = 200.00; }
+    else if (inc.between(6250, 6749.99)) {o.er = 459.30; o.ee = 216.70; }
+    else if (inc.between(6750, 7249.99)) {o.er = 494.70; o.ee = 233.30; }
+    else if (inc.between(7250, 7749.99)) {o.er = 530.00; o.ee = 250.00; }
+    else if (inc.between(7750, 8249.99)) {o.er = 565.30; o.ee = 266.70; }
+    else if (inc.between(8250, 8749.99)) {o.er = 600.70; o.ee = 283.30; }
+    else if (inc.between(8750, 9249.99)) {o.er = 636.00; o.ee = 300.00; }
+    else if (inc.between(9250, 9749.99)) {o.er = 671.30; o.ee = 316.70; }
+    else if (inc.between(9750, 10249.99)) {o.er = 706.70; o.ee = 333.30; }
+    else if (inc.between(10250,10749.99)) {o.er = 742.00; o.ee = 350.00; }
+    else if (inc.between(10750,11249.99)) {o.er = 777.30; o.ee = 366.70; }
+    else if (inc.between(11250,11749.99)) {o.er = 812.70; o.ee = 383.30; }
+    else if (inc.between(11750,12249.99)) {o.er = 848.00; o.ee = 400.00 }
+    else if (inc.between(12250,12749.99)) {o.er = 883.33; o.ee = 416.70; }
+    else if (inc.between(12750,13249.99)) {o.er = 918.70; o.ee = 433.30; }
+    else if (inc.between(13250,13749.99)) {o.er = 954.00; o.ee = 450.00; }
+    else if (inc.between(13750,14249.99)) {o.er = 989.30; o.ee = 466.70; }
+    else if (inc.between(14250,14749.99)) {o.er = 1024.70; o.ee = 483.30; }
+    else if (inc >= 14750) {o.er = 1060.00; o.ee = 500.00; }
+    
+    return o;
+}

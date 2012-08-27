@@ -1,4 +1,24 @@
 
+test('Test SSS Contribution calculation', function() {
+    
+    var salary = 10000.00; var ee = "333.30"; var result = calcSSSContribution(salary);
+    equal(result.ee, ee, "Monthly Income: " + salary + " | ER: " + result.er + " | EE: " + result.ee);
+    
+    salary = 5250.00; ee = "183.30"; result = calcSSSContribution(salary);
+    equal(result.ee, ee, "Monthly Income: " + salary + " | ER: " + result.er + " | EE: " + result.ee);
+
+    salary = 7749.99; ee = "250.00"; result = calcSSSContribution(salary);
+    equal(result.ee, ee, "Monthly Income: " + salary + " | ER: " + result.er + " | EE: " + result.ee);
+
+    salary = 30000.00; ee = "500.00"; result = calcSSSContribution(salary);
+    equal(result.ee, ee, "Monthly Income: " + salary + " | ER: " + result.er + " | EE: " + result.ee);
+
+    salary = 14000.00; ee = "466.70"; result = calcSSSContribution(salary);
+    equal(result.ee, ee, "Monthly Income: " + salary + " | ER: " + result.er + " | EE: " + result.ee);
+
+
+});
+
 test('Test Personal Exemption calculation', function() {
     
     var status = 'single';
@@ -8,11 +28,11 @@ test('Test Personal Exemption calculation', function() {
     var calcdExempt = calcPersonalTaxExemption(status, dependents);
     
     equal(calcdExempt, expected, 
-         " | Status: '" + status + "' | Dependents: " + dependents + " | Personal Exemption: " + calcdExempt);
+         "Status: '" + status + "' | Dependents: " + dependents + " | Personal Exemption: " + calcdExempt);
 
     status = 'married';
     equal(calcdExempt, expected, 
-         " | Status: '" + status + "' | Dependents: " + dependents + " | Personal Exemption: " + calcdExempt);
+         "Status: '" + status + "' | Dependents: " + dependents + " | Personal Exemption: " + calcdExempt);
 
     //Single with 1 dependent
     dependents = 1;
@@ -20,7 +40,7 @@ test('Test Personal Exemption calculation', function() {
     calcdExempt = calcPersonalTaxExemption(status, dependents);
      
     equal(calcdExempt, expected, 
-         " | Status: '" + status + "' | Dependents: " + dependents + " | Personal Exemption: " + calcdExempt);
+         "Status: '" + status + "' | Dependents: " + dependents + " | Personal Exemption: " + calcdExempt);
 
     //Single with 3 dependents
     dependents = 2;
@@ -28,7 +48,7 @@ test('Test Personal Exemption calculation', function() {
     calcdExempt = calcPersonalTaxExemption(status, dependents);
      
     equal(calcdExempt, expected, 
-         " | Status: '" + status + "' | Dependents: " + dependents + " | Personal Exemption: " + calcdExempt);
+         "Status: '" + status + "' | Dependents: " + dependents + " | Personal Exemption: " + calcdExempt);
 
     //Single with 4 dependents
     dependents = 4;
@@ -36,7 +56,7 @@ test('Test Personal Exemption calculation', function() {
     calcdExempt = calcPersonalTaxExemption(status, dependents);
      
     equal(calcdExempt, expected, 
-         " | Status: '" + status + "' | Dependents: " + dependents + " | Personal Exemption: " + calcdExempt);
+         "Status: '" + status + "' | Dependents: " + dependents + " | Personal Exemption: " + calcdExempt);
 
     //Single with 10 dependents
     dependents = 10;
@@ -44,10 +64,9 @@ test('Test Personal Exemption calculation', function() {
     calcdExempt = calcPersonalTaxExemption(status, dependents);
      
     equal(calcdExempt, expected, 
-         " | Status: '" + status + "' | Dependents: " + dependents + " | Personal Exemption: " + calcdExempt);
+         "Status: '" + status + "' | Dependents: " + dependents + " | Personal Exemption: " + calcdExempt);
 
 });
-
 
 
 
@@ -64,6 +83,9 @@ test('Test monthly tax calculation', function () {
     tax = testCalcMonthlyTax(status, dependents, 15000,15000, 2, ytdTax, ytdInc,1708.33); ytdTax += tax.monthlyTax; ytdInc = tax.ytdIncome;
     tax = testCalcMonthlyTax(status, dependents, 15000,10000, 3, ytdTax, ytdInc,1608.33); ytdTax += tax.monthlyTax; ytdInc = tax.ytdIncome;
     tax = testCalcMonthlyTax(status, dependents, 15000,15000, 4, ytdTax, ytdInc,1608.33); ytdTax += tax.monthlyTax; ytdInc = tax.ytdIncome;
+    
+    
+    tax = testCalcMonthlyTax(status, dependents, 55000,55000, 1, 0, 0,13350);
 });
 
 function testCalcMonthlyTax(status, dependents, regMonthlyIncome, oneMonthIncomeToTax, monthNumber,
@@ -79,13 +101,13 @@ function testCalcMonthlyTax(status, dependents, regMonthlyIncome, oneMonthIncome
     var roundedOneMonth = Math.round(oneMonth * 100)/100;
     
     equal(roundedOneMonth, expected, 
-             " | This month's income: " + formatNumber(oneMonthIncomeToTax)
-             + " | Proj Inc: " + formatNumber(tax.projectedIncome)
-             + " | Ytd Inc: " + formatNumber(tax.ytdIncome)
-             + " | Ytd Tax: " + formatNumber(tax.ytdTotalTax)
+             "This Month's Inc: " + formatNumber(oneMonthIncomeToTax)
+             + " | Monthly Tax: " + formatNumber(roundedOneMonth)
+             + " | Proj. Annual Inc: " + formatNumber(tax.projectedIncome)
              + " | Persnl Exempt: " + formatNumber(tax.personalExemption)
              + " | Annual Taxable Inc: " + formatNumber(tax.taxableIncome)
-             + " | Monthly Tax: " + formatNumber(roundedOneMonth)
+             + " | Ytd Inc: " + formatNumber(tax.ytdIncome)
+             + " | Ytd Tax: " + formatNumber(tax.ytdTotalTax)
              + " | Remaining Months: " + tax.remainingMonths);
 
     return tax;
