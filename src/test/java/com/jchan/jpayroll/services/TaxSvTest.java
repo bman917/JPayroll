@@ -65,7 +65,10 @@ public class TaxSvTest {
         assertEquals(msg, "500.00", TaxSv.calcAnnualTax(new BigDecimal("10000")).toString());
         assertEquals(msg, "500.10", TaxSv.calcAnnualTax(new BigDecimal("10001")).toString());
         assertEquals(msg, "3250.00", TaxSv.calcAnnualTax(new BigDecimal("35000")).toString());
-
+        assertEquals(msg, "14500.00", TaxSv.calcAnnualTax(new BigDecimal("100000")).toString());
+        assertEquals(msg, "37500.00", TaxSv.calcAnnualTax(new BigDecimal("200000")).toString());
+        assertEquals(msg, "65000.00", TaxSv.calcAnnualTax(new BigDecimal("300000")).toString());
+        assertEquals(msg, "189000.00", TaxSv.calcAnnualTax(new BigDecimal("700000")).toString());
     }
     
 

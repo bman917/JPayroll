@@ -26,15 +26,13 @@ public class TaxSv {
     public static MathContext context = MathContext.DECIMAL32;
 
     /*
-     *
-     * Not over P10,000………………………………… 5% Over P10,000 but not over P30,000………………
-     * P500+10% of the excess over P10,000 Over P30,000 but not over
-     * P70,000……………… P2,500+15% of the excess over P30,000 Over P70,000 but not
-     * over P140,000……..……… P8,500+20% of the excess over P70,000 Over P140,000
-     * but not over P250,000…………… P22,500+25% of the excess over P140,000 Over
-     * P250,000 but not over P500,000…………… P50,000+30% of the excess over
-     * P250,000 Over P500,000 …………………………………… P125,000+32% of the excess over
-     * P500,000
+     * Not over P10,000………………………………… 5% 
+     * Over P10,000 but not over P30,000……………… P500+10% of the excess over P10,000 
+     * Over P30,000 but not over P70,000……………… P2,500+15% of the excess over P30,000 
+     * Over P70,000 but not over P140,000…………… P8,500+20% of the excess over P70,000 
+     * Over P140,000 but not over P250,000…………… P22,500+25% of the excess over P140,000 
+     * Over P250,000 but not over P500,000…………… P50,000+30% of the excess over P250,000 
+     * Over P500,000 …………………………………… P125,000+32% of the excess over P500,000
      */
     public static BigDecimal calcAnnualTax(BigDecimal annualIncome) {
 
@@ -103,7 +101,7 @@ public class TaxSv {
         SalarySv.sortByEffectiveDate(list);
 
         BigDecimal total = BigDecimal.ZERO;
-        
+
         /*
          * The key here is to determine/calculate the annual income.
          * 
@@ -113,13 +111,13 @@ public class TaxSv {
         Calendar cal = Calendar.getInstance();
         cal.set(Calendar.YEAR, year);
         cal.set(Calendar.DATE, 1);
-        
+
         Salary selectedSalary = null;
-        
+
         for (int i = 0; i < 12; i++) {
             cal.set(Calendar.MONTH, i);
-            
-            String log = "Finding Salary for " + (i +1) + "/" + year;
+
+            String log = "Finding Salary for " + (i + 1) + "/" + year;
 
 
             /*
@@ -128,15 +126,15 @@ public class TaxSv {
             Calendar tmpCal = Calendar.getInstance();
             for (Salary sal : list) {
                 tmpCal.setTime(sal.getEffectiveDate());
-                
+
                 int salYear = tmpCal.get(Calendar.YEAR);
                 int salMonth = tmpCal.get(Calendar.MONTH);
-                
+
                 if (sal.getEffectiveDate().before(cal.getTime())) {
                     selectedSalary = sal;
                 }
             }
-            
+
             if (selectedSalary != null) {
                 logger.info(log + " ----> " + selectedSalary.getAmount());
                 total = total.add(selectedSalary.getAmount());
@@ -144,7 +142,7 @@ public class TaxSv {
                 logger.info(log + " ----> NO SALARY FOUND");
             }
         }
-        
+
         logger.info("Total Annual Income: " + total);
 
 
