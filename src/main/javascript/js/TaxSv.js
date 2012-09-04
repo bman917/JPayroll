@@ -57,11 +57,19 @@ function calcAnnualTax2(status, numOfDependents, regMonthlyIncome, thisMonthsInc
     ytdTotalTax, ytdIncome) {
         
     var personalExemption = calcPersonalTaxExemption(status, numOfDependents);
+    
+    var sssAnnualContrib = calcSSSContribution(regMonthlyIncome).ee * 12;
+    var philHealthAnnualContrib = calculatePhilHealthEmployeeContribution(regMonthlyIncome) * 12;
+    var pagIbigAnnualContrib = calculatePagIbigEmployeeContribution(regMonthlyIncome) * 12;
+    
+    var contributions = sssAnnualContrib + philHealthAnnualContrib + pagIbigAnnualContrib;
+    if (contributions > 30000) contributions = 30000;
+    
         
     var remainingMonths = 12 - monthNumber;
-    var projectedIncome = thisMonthsIncome + (regMonthlyIncome * (remainingMonths)) + ytdIncome;
+    var projectedIncome = thisMonthsIncome + (thisMonthsIncome * (remainingMonths)) + ytdIncome;
     
-    var taxableIncome = projectedIncome - personalExemption;
+    var taxableIncome = projectedIncome - personalExemption - contributions;
     
     var proAnnualTax = calcAnnualTax(taxableIncome);
     var calcdRemainingTax = proAnnualTax - ytdTotalTax;
@@ -75,6 +83,7 @@ function calcAnnualTax2(status, numOfDependents, regMonthlyIncome, thisMonthsInc
     o.remainingMonths = remainingMonths;
     o.regMonthlyIncome = regMonthlyIncome;
     o.taxableIncome = taxableIncome;
+    o.contributions = contributions;
     return o;
 }
 
@@ -172,4 +181,23 @@ function calcSSSContribution(monthlyIncome) {
     else if (inc >= 14750) {o.er = 1060.00; o.ee = 500.00; }
     
     return o;
+}
+
+
+function calculatePhilHealthEmployeeContribution(monthlyIncome) {
+    if (monthlyIncome < 5000) return 50;
+    else if (monthlyIncome >= 30000) return 375;
+    else return (Math.floor(monthlyIncome/1000) * 25) / 2;
+}
+
+
+function calculatePagIbigEmployeeContribution(monthlyIncome) {
+    var contrib = 0;
+    
+    if (monthlyIncome < 1500) contrib = monthlyIncome * .01;
+    else contrib = monthlyIncome * .02;
+    
+    //if (contrib > 100) contrib = 100;
+    
+    return contrib;
 }
